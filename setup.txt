@@ -1,0 +1,35 @@
+do all of this in a single namespace
+to create namespace 
+
+- kubectl create namespace <namespace>
+
+
+1. should install telepresence in cluster 
+      telepresence helm install -n <namespace>
+
+2.build the dockerfile in the folder and push it inside dockerhub
+    
+    docker build -t basic-image .
+    docker login
+    docker tag basic-image <dockerhub-username>/<repository-name>:<tag>
+    docker push <dockerhub-username>/<repository-name>:<tag>
+
+3.after pushing docker image to dockerhub now connect to aks 
+4.apply aks.yaml in cluster inside a <namespace>
+
+    kubectl apply -f aks.yaml -n <namespace>
+
+5.now connect telepresence 
+
+
+    telepresence connect 
+    telepresence --swap-deployment <deployment-name> -n <namespace>
+
+****6. even in ur local system the application as to be running in the same port as deployment port in our case deployment is running in 8080
+
+
+
+
+
+
+
